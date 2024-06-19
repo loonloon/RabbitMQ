@@ -13,7 +13,7 @@ def on_request(ch, method, props, body):
     # ch.close()
 
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters())
 channel = connection.channel()
 channel.basic_consume(queue='request_queue', on_message_callback=on_request, auto_ack=False)
 
