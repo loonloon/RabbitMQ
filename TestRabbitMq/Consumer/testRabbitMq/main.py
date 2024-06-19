@@ -10,8 +10,6 @@ def on_request(ch, method, props, body):
                      properties=pika.BasicProperties(correlation_id=props.correlation_id),
                      body=str(response))
     ch.basic_ack(delivery_tag=method.delivery_tag)
-    # ch.close()
-
 
 connection = pika.BlockingConnection(pika.ConnectionParameters())
 channel = connection.channel()
