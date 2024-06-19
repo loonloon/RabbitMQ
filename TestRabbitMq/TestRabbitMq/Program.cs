@@ -16,9 +16,6 @@ namespace TestRabbitMq
                 rabbitMQClient.SendRequest(message);
             }
 
-            Console.WriteLine("Press [enter] to exit.");
-            Console.ReadLine();
-
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
         }
@@ -35,7 +32,7 @@ namespace TestRabbitMq
 
         public RabbitMQClient()
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory();
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
             requestQueueName = "request_queue";
@@ -51,9 +48,6 @@ namespace TestRabbitMq
                 {
                     var response = Encoding.UTF8.GetString(ea.Body.ToArray());
                     Console.WriteLine("Response: " + response);
-
-                    //channel.Close();
-                    //connection.Close();
                 }
             };
 
